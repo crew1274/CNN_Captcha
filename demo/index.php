@@ -21,7 +21,8 @@ body { font-family: sans-serif; font-size: 0.8em; padding: 20px; }
 <?php
 /** Validate captcha */
 if (!empty($_REQUEST['captcha'])) {
-    if (empty($_SESSION['captcha']) || trim(strtolower($_REQUEST['captcha'])) != $_SESSION['captcha']) {
+    if (empty($_SESSION['real']) || trim(strtolower($_REQUEST['captcha'])) != $_SESSION['real'])
+     {
         $captcha_message = "Invalid captcha";
         $style = "background-color: #FF606C";
     } else {
@@ -37,7 +38,7 @@ if (!empty($_REQUEST['captcha'])) {
         <table>
         <tr>
             <td>Session CAPTCHA:</td>
-            <td>{$_SESSION['captcha']}</td>
+            <td>{$_SESSION['real']}</td>
         </tr>
         <tr>
             <td>Form CAPTCHA:</td>
@@ -46,7 +47,7 @@ if (!empty($_REQUEST['captcha'])) {
         </table>
         </div>
 HTML;
-    unset($_SESSION['captcha']);
+
 }
 
 
