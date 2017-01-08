@@ -15,6 +15,7 @@ def solve(im):
     cim = im.crop(region)
     X_list.append(np.array(cim))
   p = model.predict(np.array(X_list))
+  print(p)
   for each in p:
     index=0
     for i in range(len(each)):
@@ -23,8 +24,6 @@ def solve(im):
     result+=(table[index])
   return (result)
 
-
-X_list=[]
 
 table = ['0','1','2','3','4','5','6','7','8','9',\
                'a','b','c','d','e','f','g','h','i','j','k',\
@@ -41,4 +40,3 @@ for filename in dirs:
     im = Image.open(os.path.join('/var/www/html/CNN_Captcha/test/', filename))
     print ('real:'+ filename )
     print ('predict:'+ solve(im))
-
