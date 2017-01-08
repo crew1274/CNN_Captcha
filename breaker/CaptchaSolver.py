@@ -3,6 +3,8 @@
 from keras.models import model_from_json
 import numpy as np
 from PIL import Image
+import sys
+import os
 
 X_list=[]
 
@@ -13,8 +15,15 @@ table = ['0','1','2','3','4','5','6','7','8','9',\
                'H','I','J','K','L','M','N','O','P','Q','R',\
                'S','T','U','V','W','X','Y','Z']
 
-model = model = model_from_json(open('shu_captcha_CNN_structure.json').read())
-model.load_weights('shu_captcha_CNN_weights.h5')
+model = model = model_from_json(open('captcha_CNN_structure.json').read())
+model.load_weights('captcha_CNN_weights.h5')
+
+dirs = os.listdir('../test/')
+for filename in dirs:
+    im = Image.open(filename)
+    print ('real:'+ filename )
+    print ('predict:'+ solve(im))
+
 
 
 def solve(im):
