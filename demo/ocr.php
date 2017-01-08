@@ -12,7 +12,7 @@ use Gregwar\Captcha\CaptchaBuilder;
  * ocrad OCR
  */
 
-$tests = 10000;
+$tests = 100;
 $passed = 0;
 
 shell_exec('rm passed*.jpg');

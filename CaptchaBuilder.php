@@ -4,13 +4,6 @@ namespace Gregwar\Captcha;
 
 use \Exception;
 
-/**
- * Builds a new captcha image
- * Uses the fingerprint parameter, if one is passed, to generate the same image
- *
- * @author Gregwar <g.passault@gmail.com>
- * @author Jeremy Livingston <jeremy.j.livingston@gmail.com>
- */
 class CaptchaBuilder implements CaptchaBuilderInterface
 {
     /**
@@ -375,7 +368,7 @@ class CaptchaBuilder implements CaptchaBuilderInterface
     /**
      * Builds while the code is readable against an OCR
      */
-    public function buildAgainstOCR($width = 150, $height = 40, $font = null, $fingerprint = null)
+    public function buildAgainstOCR($width = 60, $height = 22, $font = null, $fingerprint = null)
     {
         do {
             $this->build($width, $height, $font, $fingerprint);
@@ -385,7 +378,7 @@ class CaptchaBuilder implements CaptchaBuilderInterface
     /**
      * Generate the image
      */
-    public function build($width = 150, $height = 40, $font = null, $fingerprint = null)
+    public function build($width = 60, $height = 22, $font = null, $fingerprint = null)
     {
         if (null !== $fingerprint) {
             $this->fingerprint = $fingerprint;
@@ -559,9 +552,10 @@ class CaptchaBuilder implements CaptchaBuilderInterface
     /**
      * Outputs the image
      */
-    public function output($quality = 90)
+    public function output($filename)
     {
-        imagejpeg($this->contents, null, $quality);
+        imagejpeg($this->contents, $filename, 90);
+        imagejpeg($this->contents, null, 90);
     }
 
     /**
