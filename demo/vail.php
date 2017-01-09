@@ -4,26 +4,33 @@ include(__DIR__.'/../PhraseBuilderInterface.php');
 include(__DIR__.'/../CaptchaBuilder.php');
 include(__DIR__.'/../PhraseBuilder.php');
 use Gregwar\Captcha\CaptchaBuilder;
-echo "產生訓練資料集<br>";
-for ( $i=0 ; $i<10; $i++ )
+use Gregwar\Captcha\PhraseBuilder;
+
+echo "產生驗證資料集<br>";
+for ( $i=0 ; $i<32; $i++ )
 {
 $captcha = new CaptchaBuilder;
 $captcha->
 setBackgroundColor(255, 255,255)->setTextColor(0,0,0)->
 setMaxBehindLines(0)->setMaxFrontLines(0)->setInterpolation(false)->setDistortion(false)->build();
     $label=$captcha->getPhrase();
-    $captcha->save('temp/'.$i.'.jpg');
+    $captcha->save('vail/'.$i.'.jpg');
 echo $label.'<br>';
-//label.csv
-$a = array();
-for ($i=0; $i<$length; $i++) {
-    $a[$i] = $string[$i];
+//label.csv generate
+$arr=array();
+for ($k=0;$k<4 ;$k++)
+{
+    if ((int)$label[$k])
+    {$arr[$k]=(int)$label[$k];}
+    else
+    {
+        $phrase = new PhraseBuilder;
+        $arr[$k]=$phrase->con($label[$k]);
+    }
 }
 
-
-$list = array (array($label[0],$label[1],$label[2],$label[3]),);
-$fp = fopen('label.csv', 'a+');
+$list = array ($arr,);
+$fp = fopen('vail/label.csv', 'a+');
 foreach ($list as $fields) {fputcsv($fp, $fields);}
 fclose($fp);
-
 }

@@ -5,9 +5,12 @@ from keras.layers import Convolution2D, MaxPooling2D
 from keras.optimizers import SGD
 from keras.callbacks import EarlyStopping
 import numpy as np
+import h5py
 
-X_train = np.load("X_train.npy")
-Y_train = np.load("Y_train.npy")
+X_train = np.load("/var/www/html/CNN_Captcha/demo/x_train.npy")
+Y_train = np.load("/var/www/html/CNN_Captcha/demo/y_train.npy")
+X_test = np.load("/var/www/html/CNN_Captcha/demo/x_test.npy")
+Y_test = np.load("/var/www/html/CNN_Captcha/demo/y_test.npy")
 
 batch_size = 32
 nb_classes = 144  # (10+26)*4=144
@@ -15,8 +18,9 @@ nb_epoch = 400
 data_augmentation = True
 
 # input image dimensions
-img_rows, img_cols = 22, 15 #圖片大小
+img_rows, img_cols = 22, 60 #圖片大小 寬*長
 img_channels = 3 #RGB
+
 
 print('X_train shape:', X_train.shape)
 print(X_train.shape[0], 'train samples')

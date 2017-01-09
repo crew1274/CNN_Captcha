@@ -1,3 +1,7 @@
-demo/temp/*.jpg
-demo/*.csv
+demo/train/*.jpg
+demo/train/*.csv
+demo/train/*.npy
+demo/vail/*.jpg
+demo/vail/*.csv
+demo/vail/*.npy
 test/*.jpg

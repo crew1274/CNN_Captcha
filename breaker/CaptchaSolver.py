@@ -3,7 +3,6 @@
 from keras.models import model_from_json
 import numpy as np
 from PIL import Image
-import sys
 import os
 
 
