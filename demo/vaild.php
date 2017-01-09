@@ -14,7 +14,7 @@ $captcha->
 setBackgroundColor(255, 255,255)->setTextColor(0,0,0)->
 setMaxBehindLines(0)->setMaxFrontLines(0)->setInterpolation(false)->setDistortion(false)->build();
     $label=$captcha->getPhrase();
-    $captcha->save('vail/'.$i.'.jpg');
+    $captcha->save('vaild/'.$i.'.jpg');
 echo $label.'<br>';
 //label.csv generate
 $arr=array();
