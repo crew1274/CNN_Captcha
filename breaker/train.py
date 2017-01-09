@@ -10,24 +10,27 @@ X_train = np.load("X_train.npy")
 Y_train = np.load("Y_train.npy")
 
 batch_size = 32
-nb_classes = 62
+nb_classes = 144  # (10+26)*4=144
 nb_epoch = 400
 data_augmentation = True
 
 # input image dimensions
-img_rows, img_cols = 22, 15
-img_channels = 3
+img_rows, img_cols = 22, 15 #圖片大小
+img_channels = 3 #RGB
 
 print('X_train shape:', X_train.shape)
 print(X_train.shape[0], 'train samples')
 
-model = Sequential()
+model = Sequential()# 建立模型
+model.add(Convolution2D(48, 5, 5, border_mode='same',input_shape=X_train.shape[1:]))
+model.add(Activation('relu')) # 激活函數 使用relu
 
-model.add(Convolution2D(32, 3, 3, border_mode='same',
-                        input_shape=X_train.shape[1:]))
-model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
 model.add(Convolution2D(32, 3, 3))
 model.add(Activation('relu'))
+
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
@@ -46,11 +49,10 @@ model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
 
 sgd = SGD(lr=1e-5, decay=0, momentum=0.9, nesterov=True)
-model.compile(loss='categorical_crossentropy',
-              optimizer=sgd)
+model.compile(loss='categorical_crossentropy',optimizer=sgd) #隨機梯度下降
 
-model.fit(X_train, Y_train, batch_size=batch_size, nb_epoch=nb_epoch,
-          verbose=1)
+model.fit(X_train, Y_train, batch_size=32, nb_epoch=400, verbose=1)
+
 # score = model.evaluate(X_test, Y_test, verbose=0)
 # print('Test score:', score[0])
 # print('Test accuracy:', score[1])

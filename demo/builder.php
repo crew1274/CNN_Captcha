@@ -14,4 +14,10 @@ setMaxBehindLines(0)->setMaxFrontLines(0)->setInterpolation(false)->setDistortio
     $label=$captcha->getPhrase();
     $captcha->save('temp/'.$label.'.jpg');
 echo $label.'<br>';
+//label.csv
+$list = array (array($label[0],$label[1],$label[2],$label[3]),);
+$fp = fopen('label.csv', 'a+');
+foreach ($list as $fields) {fputcsv($fp, $fields);}
+fclose($fp);
+
 }
