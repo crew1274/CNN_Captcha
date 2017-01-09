@@ -7,16 +7,16 @@ use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
 
 echo "產生訓練資料集<br>";
-for ( $i=0 ; $i<10; $i++ )
+for ( $i=0 ; $i<3200; $i++ )
 {
 $captcha = new CaptchaBuilder;
 $captcha->
 setBackgroundColor(255, 255,255)->setTextColor(0,0,0)->
 setMaxBehindLines(0)->setMaxFrontLines(0)->setInterpolation(false)->setDistortion(false)->build();
     $label=$captcha->getPhrase();
-    $captcha->save('temp/'.$i.'.jpg');
+    $captcha->save('train/'.$i.'.jpg');
 echo $label.'<br>';
-//label.csv
+//label.csv generate
 $arr=array();
 for ($k=0;$k<4 ;$k++)
 {

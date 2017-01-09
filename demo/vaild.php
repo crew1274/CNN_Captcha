@@ -30,7 +30,7 @@ for ($k=0;$k<4 ;$k++)
 }
 
 $list = array ($arr,);
-$fp = fopen('vail/label.csv', 'a+');
+$fp = fopen('vaild/label.csv', 'a+');
 foreach ($list as $fields) {fputcsv($fp, $fields);}
 fclose($fp);
 }

@@ -1,7 +1,7 @@
 demo/train/*.jpg
 demo/train/*.csv
 demo/train/*.npy
-demo/vail/*.jpg
-demo/vail/*.csv
-demo/vail/*.npy
+demo/vaild/*.jpg
+demo/vaild/*.csv
+demo/vaild/*.npy
 test/*.jpg
