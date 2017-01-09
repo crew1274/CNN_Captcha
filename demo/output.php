@@ -9,14 +9,10 @@ header('Content-type: image/jpeg');
 
 session_start();
 use Gregwar\Captcha\CaptchaBuilder;
-shell_exec('rm  ../test/*.jpg');
+shell_exec('rm  ../test/*.jpg'); //清除資料
 $captcha = new CaptchaBuilder;
 $captcha->setBackgroundColor(255, 255, 255)->setMaxBehindLines(0)->setTextColor(0,0,0)
     ->setMaxFrontLines(0)->setInterpolation(false)->setDistortion(false)->build();
 $label=$captcha->getPhrase();
 $captcha->output('../test/'.$label.'.jpg');
-
-
 $_SESSION['real'] = $captcha->getPhrase();
-
-;

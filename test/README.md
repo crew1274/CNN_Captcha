@@ -1,1 +1,1 @@
-This folder is for traing dataset.
+This folder is for test dataset.
