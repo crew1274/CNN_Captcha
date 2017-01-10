@@ -11,5 +11,5 @@ if __name__ == '__main__':
     for i  in range(32):
         img = Image.open(str(i)+'.jpg').convert("L")
         image.append(np.array(img))
-    print (image)
+    #print (image)
     np.save(r'x_test.npy', image)

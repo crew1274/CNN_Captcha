@@ -55,14 +55,14 @@ model.add(Activation('softmax'))
 sgd = SGD(lr=1e-5, decay=0, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy',optimizer=sgd) #隨機梯度下降
 
-model.fit(X_train, Y_train, batch_size=32, nb_epoch=400, verbose=1)
+model.fit(X_train, Y_train, batch_size=32, nb_epoch=100, verbose=1)
 
-# score = model.evaluate(X_test, Y_test, verbose=0)
-# print('Test score:', score[0])
-# print('Test accuracy:', score[1])
+score = model.evaluate(X_test, Y_test, verbose=0)
+print('Test score:', score[0])
+print('Test accuracy:', score[1])
 
-model.save_weights('shu_captcha_CNN_weights.h5')
+model.save_weights('captcha_CNN_weights.h5')
 json_string = model.to_json()
-f=open('shu_captcha_CNN_structure.json','w')
+f=open('captcha_CNN_structure.json','w')
 f.write(json_string)
 f.close()
