@@ -14,7 +14,6 @@ Y_test = np.load("/var/www/html/CNN_Captcha/demo/vild/y_test.npy")
 
 batch_size = 32
 nb_classes = 144  # (10+26)*4=144
-nb_epoch = 400
 data_augmentation = True
 
 # input image dimensions
