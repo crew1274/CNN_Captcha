@@ -368,7 +368,7 @@ class CaptchaBuilder implements CaptchaBuilderInterface
     /**
      * Builds while the code is readable against an OCR
      */
-    public function buildAgainstOCR($width = 60, $height = 22, $font = null, $fingerprint = null)
+    public function buildAgainstOCR($width = 80, $height = 20, $font = null, $fingerprint = null)
     {
         do {
             $this->build($width, $height, $font, $fingerprint);
@@ -378,7 +378,7 @@ class CaptchaBuilder implements CaptchaBuilderInterface
     /**
      * Generate the image
      */
-    public function build($width = 60, $height = 22, $font = null, $fingerprint = null)
+    public function build($width = 80, $height = 20, $font = null, $fingerprint = null)
     {
         if (null !== $fingerprint) {
             $this->fingerprint = $fingerprint;

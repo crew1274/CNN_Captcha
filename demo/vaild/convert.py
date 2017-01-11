@@ -8,7 +8,7 @@ if __name__ == '__main__':
     np.save(r'y_test.npy', label)
     #轉換jpg to npy
     image = []
-    for i  in range(32):
+    for i  in range(64):
         img = Image.open(str(i)+'.jpg').convert("L")
         image.append(np.array(img))
     #print (image)

@@ -10,34 +10,34 @@ import numpy as np
 X_train = np.load("/var/www/html/CNN_Captcha/demo/train/x_train.npy")
 Y_train = np.load("/var/www/html/CNN_Captcha/demo/train/y_train.npy")
 X_test = np.load("/var/www/html/CNN_Captcha/demo/vaild/x_test.npy")
-Y_test = np.load("/var/www/html/CNN_Captcha/demo/vild/y_test.npy")
+Y_test = np.load("/var/www/html/CNN_Captcha/demo/vaild/y_test.npy")
 
 batch_size = 32
-nb_classes = 144  # (10+26)*4=144
+nb_classes = 144  # 有序分類 (10+26)*4=144
 data_augmentation = True
 
 # input image dimensions
-img_rows, img_cols = 22, 60 #圖片大小 寬*長
+img_rows, img_cols = 20, 80 #圖片大小 寬*長
 img_channels = 3 #RGB
 
 
-print('X_train shape:', X_train.shape)
-print(X_train.shape[0], 'train samples')
+print(X_train.shape)
+print(Y_train.shape)
 
 model = Sequential()# 建立模型
-model.add(Convolution2D(48, 5, 5, border_mode='same',input_shape=X_train.shape[1:]))
+model.add(Convolution2D(12,1, 3,3, border_mode='same',input_shape=X_train.shape[0:]))
 model.add(Activation('relu')) # 激活函數 使用relu
 
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
-model.add(Convolution2D(32, 3, 3))
+model.add(Convolution2D(32, 5, 5))
 model.add(Activation('relu'))
 
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
-model.add(Convolution2D(64, 3, 3, border_mode='same'))
+model.add(Convolution2D(64, 3, 5, border_mode='same'))
 model.add(Activation('relu'))
 model.add(Convolution2D(64, 3, 3))
 model.add(Activation('relu'))
@@ -49,10 +49,10 @@ model.add(Dense(512))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(nb_classes))
-model.add(Activation('softmax'))
+model.add(Activation('sigmoid'))
 
 sgd = SGD(lr=1e-5, decay=0, momentum=0.9, nesterov=True)
-model.compile(loss='categorical_crossentropy',optimizer=sgd) #隨機梯度下降
+model.compile(loss='binary_crossentrpy',optimizer=sgd) #隨機梯度下降
 
 model.fit(X_train, Y_train, batch_size=32, nb_epoch=100, verbose=1)
 

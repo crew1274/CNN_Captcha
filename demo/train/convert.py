@@ -8,7 +8,7 @@ if __name__ == '__main__':
     np.save(r'y_train.npy', label)
     #轉換jpg to npy
     image = []
-    for i  in range(3200):
+    for i  in range(6400):
         img = Image.open(str(i)+'.jpg').convert("L")
         image.append(np.asarray(img))
     #print (data)
