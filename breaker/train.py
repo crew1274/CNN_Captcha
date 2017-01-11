@@ -18,8 +18,8 @@ nb_classes = 144  # 有序分類 (10+26)*4=144
 
 
 # input image dimensions
-img_rows, img_cols = 20, 80 #圖片大小 寬*長
-img_channels = 3 #RGB
+img_rows, img_cols = 22, 60 #圖片大小 寬*長
+img_channels = 1 #RGB
 
 X_train = X_train.astype("float32")
 X_test = X_test.astype("float32")
@@ -27,12 +27,12 @@ print(X_train.shape)
 print(Y_train.shape)
 
 model = Sequential()# 建立模型
-model.add(Convolution2D(32,3,3,3, border_mode='valid',input_shape=X_train.shape[1:]))
+model.add(Convolution2D(32,3,3, border_mode='same',input_shape=X_train.shape[1:]))
 model.add(Activation('relu')) # 激活函數 使用relu
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
-model.add(Convolution2D(64,3, 3,border_mode='valid'))
+model.add(Convolution2D(64,3, 3,border_mode='same'))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
