@@ -27,7 +27,7 @@ print(X_train.shape)
 print(Y_train.shape)
 
 model = Sequential()# 建立模型
-model.add(Convolution2D(32,3,3,3, border_mode='valid'))
+model.add(Convolution2D(32,3,3,3, border_mode='valid',input_shape=X_train.shape[1:]))
 model.add(Activation('relu')) # 激活函數 使用relu
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
@@ -54,9 +54,9 @@ score = model.evaluate(X_test, Y_test, verbose=1)
 print('Test score:', score[0])
 print('Test accuracy:', score[1])
 
-'''
-model.save_weights('captcha_CNN_weights.h5')
-json_string = model.to_json()
-f=open('captcha_CNN_structure.json','w')
-f.write(json_string)
-f.close()
+
+#model.save_weights('captcha_CNN_weights.h5')
+#json_string = model.to_json()
+#f=open('captcha_CNN_structure.json','w')
+#f.write(json_string)
+#f.close()
