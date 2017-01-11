@@ -25,27 +25,24 @@ print(X_train.shape)
 print(Y_train.shape)
 
 model = Sequential()# 建立模型
-model.add(Convolution2D(12,1, 3,3, border_mode='same',input_shape=X_train.shape[0:]))
+model.add(Convolution2D(16, 3,3, border_mode='same',input_shape=X_train.shape[]))
 model.add(Activation('relu')) # 激活函數 使用relu
 
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
-model.add(Convolution2D(32, 5, 5))
+model.add(Convolution2D(32, 3, 3,border_mode='same'))
 model.add(Activation('relu'))
 
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
-model.add(Convolution2D(64, 3, 5, border_mode='same'))
-model.add(Activation('relu'))
-model.add(Convolution2D(64, 3, 3))
+model.add(Convolution2D(64, 3, 3, border_mode='same'))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
-
 model.add(Flatten())
-model.add(Dense(512))
+model.add(Dense(720))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(nb_classes))
