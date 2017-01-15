@@ -31,7 +31,7 @@ print(Y_train.shape)
 
 model = Sequential()# 建立模型
 model.add(Convolution2D(32,3,3, border_mode='same',input_shape=X_train.shape[1:]))
-model.add(Activation('relu')) # 激活函數 使用relu
+model.add(Activation('relu')) # 激活函數 使用relㄎu
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
@@ -41,20 +41,19 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
 model.add(Flatten())
-model.add(Dense(720))
-
+model.add(Dense(360, 4))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 
-model.add(Dense(4))
+model.add(Dense(4,36,init='uniform'))
 model.add(Activation('sigmoid'))
 
 
 sgd = SGD(lr=1e-5, decay=0, momentum=0.9, nesterov=True)
 model.compile(loss='binary_crossentropy', optimizer=sgd)  #隨機梯度下降
 
-model.fit(X_train, Y_train, batch_size=32, nb_epoch=100, verbose=1)
-
+model.fit(X_train, Y_train, batch_size=32, nb_epoch=10, verbose=1)
+proba = model.predict_proba(X_test)
 score = model.evaluate(X_test, Y_test, verbose=1)
 print('Test score:', score[0])
 print('Test accuracy:', score[1])
