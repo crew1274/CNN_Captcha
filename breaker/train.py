@@ -15,17 +15,16 @@ Y_test = np.load("/var/www/html/CNN_Captcha/demo/vaild/y_test.npy")
 
 batch_size = 32
 nb_classes = 144  # 有序分類 (10+26)*4=144
-
-
+nb_epoch = 100
 # input image dimensions
-img_rows, img_cols = 22, 60 #圖片大小 寬*長
-img_channels = 1 #RGB
+img_rows, img_cols = 20, 80 #圖片大小 寬*長
+img_channels = 1 #gray
 
 
 X_train = X_train.astype("float32")
-X_train = X_train.reshape(X_train.shape[0], 1, img_rows, img_cols)
+X_train = X_train.reshape(X_train.shape[0], img_channels, img_rows, img_cols)
 X_test = X_test.astype("float32")
-X_test = X_test.reshape(X_test.shape[0], 1, img_rows, img_cols)
+X_test = X_test.reshape(X_test.shape[0], img_channels, img_rows, img_cols)
 print(X_train.shape)
 print(Y_train.shape)
 
@@ -48,11 +47,12 @@ model.add(Dropout(0.5))
 model.add(Dense(4))
 model.add(Activation('sigmoid'))
 
-
 sgd = SGD(lr=1e-5, decay=0, momentum=0.9, nesterov=True)
-model.compile(loss='binary_crossentropy', optimizer=sgd)  #隨機梯度下降
+model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy']) #學習過程
 
-model.fit(X_train, Y_train, batch_size=32, nb_epoch=10, verbose=1)
+model.fit(X_train, Y_train, batch_size= batch_size, nb_epoch= nb_epoch, verbose=1,)
+
+
 proba = model.predict_proba(X_test)
 #score = model.evaluate(X_test, Y_test, verbose=1)
 print(proba)

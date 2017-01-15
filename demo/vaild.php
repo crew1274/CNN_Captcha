@@ -6,13 +6,15 @@ include(__DIR__.'/../PhraseBuilder.php');
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
 
+shell_exec('rm  vaild/*.jpg');
+shell_exec('rm  vaild/label.csv');
 echo "產生驗證資料集<br>";
 for ( $i=0 ; $i< 64 ; $i++ )
 {
 $captcha = new CaptchaBuilder;
 $captcha->
 setBackgroundColor(255, 255,255)->
-#隨機顏色 setTextColor(0,0,0)->
+setTextColor(0,0,0)->
 setMaxBehindLines(0)->setMaxFrontLines(0)->setInterpolation(false)->setDistortion(false)->build();
     $label=$captcha->getPhrase();
     $captcha->save('vaild/'.$i.'.jpg');

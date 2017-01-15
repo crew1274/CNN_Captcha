@@ -4,4 +4,5 @@ demo/train/*.npy
 demo/vaild/*.jpg
 demo/vaild/*.csv
 demo/vaild/*.npy
+breaker/*.npy
 test/*.jpg

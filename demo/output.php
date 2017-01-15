@@ -12,7 +12,7 @@ use Gregwar\Captcha\CaptchaBuilder;
 shell_exec('rm  ../test/*.jpg'); //清除資料
 $captcha = new CaptchaBuilder;
 $captcha->setBackgroundColor(255, 255, 255)
-# 隨機顏色 ->setTextColor(0,0,0)
+->setTextColor(0,0,0)
 ->setMaxBehindLines(0)->setMaxFrontLines(0)->setInterpolation(false)->setDistortion(false)->build();
 $label=$captcha->getPhrase();
 $captcha->output('../test/'.$label.'.jpg');

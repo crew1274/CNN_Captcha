@@ -7,7 +7,7 @@ class PhraseBuilder implements PhraseBuilderInterface
     /**
      * Generates  random phrase of given length with given charset
      */
-    public function build($length = 4, $charset = 'abcdefghijklmnpqrstuvwxyz123456789')
+    public function build($length = 4, $charset = 'abcdefghijklmnpqrstuvwxyz0123456789')
     {
         $phrase = '';
         $chars = str_split($charset);
@@ -103,6 +103,8 @@ class PhraseBuilder implements PhraseBuilderInterface
         elseif ($str== 'z') {
             return 35;
         }
+        else
+        return 0;
 
     }
 
