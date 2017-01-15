@@ -41,11 +41,11 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
 model.add(Flatten())
-model.add(Dense(360, 4))
+model.add(Dense(400))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 
-model.add(Dense(4,36,init='uniform'))
+model.add(Dense(4))
 model.add(Activation('sigmoid'))
 
 
@@ -54,9 +54,10 @@ model.compile(loss='binary_crossentropy', optimizer=sgd)  #隨機梯度下降
 
 model.fit(X_train, Y_train, batch_size=32, nb_epoch=10, verbose=1)
 proba = model.predict_proba(X_test)
-score = model.evaluate(X_test, Y_test, verbose=1)
-print('Test score:', score[0])
-print('Test accuracy:', score[1])
+#score = model.evaluate(X_test, Y_test, verbose=1)
+print(proba)
+#score = model.evaluate(X_test, Y_test, verbose=1)
+#print('Test accuracy:', score[1])
 
 
 #model.save_weights('captcha_CNN_weights.h5')
