@@ -14,7 +14,7 @@ X_test = np.load("/var/www/html/CNN_Captcha/demo/vaild/x_test.npy")
 Y_test = np.load("/var/www/html/CNN_Captcha/demo/vaild/y_test.npy")
 
 batch_size = 32
-nb_classes = 144  # 有序分類 (10+26)*4=144
+nb_classes = 144  #(10+26)*4=144
 nb_epoch = 100
 # input image dimensions
 img_rows, img_cols = 20, 80 #圖片大小 寬*長
@@ -48,20 +48,12 @@ model.add(Dense(144))
 model.add(Activation('sigmoid'))
 
 sgd = SGD(lr=1e-5, decay=0, momentum=0.9, nesterov=True)
-model.compile(loss='categorical_crossentropy', optimizer='sgd') #學習過程
+model.compile(loss='categorical_crossentropy', optimizer='sgd')
+model.fit(X_train, Y_train, batch_size= batch_size, nb_epoch= nb_epoch,validation_data = (X_test,Y_test), verbose=1)
 
-model.fit(X_train, Y_train, batch_size= batch_size, nb_epoch= nb_epoch, verbose=1,)
-
-
-proba = model.predict_proba(X_test)
-#score = model.evaluate(X_test, Y_test, verbose=1)
-print(proba)
-#score = model.evaluate(X_test, Y_test, verbose=1)
-#print('Test accuracy:', score[1])
-
-
-#model.save_weights('captcha_CNN_weights.h5')
-#json_string = model.to_json()
-#f=open('captcha_CNN_structure.json','w')
-#f.write(json_string)
-#f.close()
+#儲存model
+model.save_weights('captcha_CNN_weights.h5')
+json_string = model.to_json()
+f=open('captcha_CNN_structure.json','w')
+f.write(json_string)
+f.close()

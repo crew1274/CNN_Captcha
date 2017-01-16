@@ -1,10 +1,7 @@
-#coding=utf-8
-
 from keras.models import model_from_json
 import numpy as np
 from PIL import Image
 import os
-
 
 def solve(im):
   X_list=[]
@@ -24,16 +21,13 @@ def solve(im):
   return (result)
 
 
-table = ['0','1','2','3','4','5','6','7','8','9',\
-               'a','b','c','d','e','f','g','h','i','j','k',\
-               'l','m','n','o','p','q','r','s','t','u','v',\
-               'w','x','y','z','A','B','C','D','E','F','G',\
-               'H','I','J','K','L','M','N','O','P','Q','R',\
-               'S','T','U','V','W','X','Y','Z']
+table = ['0','1','2','3','4','5','6','7','8','9',
+        'a','b','c','d','e','f','g','h','i','j','k',
+        'l','m','n','o','p','q','r','s','t','u','v',
+        'w','x','y','z']
 
 model = model_from_json(open('/var/www/html/CNN_Captcha/breaker/captcha_CNN_structure.json').read())
 model.load_weights('/var/www/html/CNN_Captcha/breaker/captcha_CNN_weights.h5')
-
 dirs = os.listdir('/var/www/html/CNN_Captcha/test/')
 for filename in dirs:
     im = Image.open(os.path.join('/var/www/html/CNN_Captcha/test/', filename))

@@ -9,7 +9,7 @@ use Gregwar\Captcha\PhraseBuilder;
 shell_exec('rm  train/*.jpg');
 shell_exec('rm  train/label.csv');
 echo "產生訓練資料集<br>";
-for ( $i=0 ; $i< 6400; $i++ )
+for ( $i=0 ; $i< 32000 ; $i++ )
 {
 $captcha = new CaptchaBuilder;
 $captcha->
