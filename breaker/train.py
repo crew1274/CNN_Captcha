@@ -40,15 +40,15 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
 model.add(Flatten())
-model.add(Dense(400))
+model.add(Dense(720))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 
-model.add(Dense(4))
+model.add(Dense(144))
 model.add(Activation('sigmoid'))
 
 sgd = SGD(lr=1e-5, decay=0, momentum=0.9, nesterov=True)
-model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy']) #學習過程
+model.compile(loss='categorical_crossentropy', optimizer='sgd') #學習過程
 
 model.fit(X_train, Y_train, batch_size= batch_size, nb_epoch= nb_epoch, verbose=1,)
 

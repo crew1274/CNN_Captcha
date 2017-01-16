@@ -71,7 +71,7 @@ class CaptchaBuilder implements CaptchaBuilderInterface
     /**
      * The maximum offset of char
      */
-    protected $maxOffset = 4;
+    protected $maxOffset = 0;
 
     /**
      * Is the interpolation enabled ?

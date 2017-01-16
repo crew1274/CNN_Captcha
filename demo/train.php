@@ -20,7 +20,6 @@ $label=$captcha->getPhrase();
 $captcha->save('train/'.$i.'.jpg');
 echo $label.'<br>';
 //label.csv generate
-$arr=array();
 for ($k=0;$k<4 ;$k++)
 {
     if ((int)$label[$k])
@@ -31,8 +30,21 @@ for ($k=0;$k<4 ;$k++)
         $arr[$k]=$phrase->con($label[$k]);
     }
 }
-
-$list = array ($arr,);
+$a=array();
+for ($g=0;$g<4 ;$g++)
+{
+    for ($m=0;$m<36 ;$m++)
+    {
+        if( $arr[$g] == $m)
+        {
+            $a[$g*36+$m]=1;
+        }
+        else {
+            $a[$g*36+$m]=0;
+        }
+    }
+}
+$list = array ($a,);
 $fp = fopen('train/label.csv', 'a+');
 foreach ($list as $fields) {fputcsv($fp, $fields);}
 fclose($fp);
